@@ -12,8 +12,8 @@ var latest_latitude = null;
 var latest_longitude = null;
 
 var logging_configs = [
-  {url: 'http://logger.cenode.io/cards/sherlock', logged_cards: []},
-  {url: 'http://logger2.cenode.io/cards/sherlock', logged_cards: []}
+//  {url: 'http://logger.cenode.io/cards/sherlock', logged_cards: []},
+//  {url: 'http://logger2.cenode.io/cards/sherlock', logged_cards: []}
 ];
 
 var SHERLOCK_CORE = [
@@ -141,6 +141,43 @@ var SHERLOCK_CORE = [
   //"there is an object named 'balloon'",
   "mae gwrthrych o'r enw 'balwn'",
 
+  "mae cwestiwn o'r enw 'c1' sydd yn cael 'Pa anifail sydd yn bwyta pinafal?' fel testun ac yn cael 'yn cael ei fwyta gan' fel perthynas ac yn pryderi y peth sherlock 'pinafal'",
+  "mae cwestiwn o'r enw 'c2' sydd yn cael 'Pa lliw het ydy&rsquo;r Hipopotamws yn gwisgo?' fel testun ac yn cael 'lliw het' fel gwerth ac yn pryderi y peth sherlock 'hipopotamws'",
+  "mae cwestiwn o'r enw 'c3' sydd yn cael 'Pa ffrwyth ydy&rsquo;r Llew yn bwyta?' fel testun ac yn cael 'yn bwyta' fel perthynas ac yn pryderi y peth sherlock 'llew'",
+  "mae cwestiwn o'r enw 'c4' sydd yn cael 'Ble mae&rsquo;r afal?' fel testun ac yn cael 'yn' fel perthynas ac yn pryderi y peth sherlock 'afal'",
+  "mae cwestiwn o'r enw 'c5' sydd yn cael 'Pa anifail sydd yn yr Ystafell Blaenafon?' fel testun ac yn cael 'cynnwys' fel gwerth ac yn pryderi y peth sherlock 'ystafell blaenafon'",
+  "mae cwestiwn o'r enw 'c6' sydd yn cael 'Pa chwaraeon ydy&rsquo;r Sebra yn chwarae?' fel testun ac yn cael 'yn chwarae' fel perthynas ac yn pryderi y peth sherlock 'sebra'",
+  "mae cwestiwn o'r enw 'c7' sydd yn cael 'Ble mae&rsquo;r Llewpard?' fel testun ac yn cael 'yn' fel perthynas ac yn pryderi y peth sherlock 'llewpard'",
+  "mae cwestiwn o'r enw 'c8' sydd yn cael 'Pa lliw het ydy&rsquo;r Jiraff yn gwisgo?' fel testun ac yn cael 'lliw het' fel gwerth ac yn pryderi y peth sherlock 'jiraff'",
+  "mae cwestiwn o'r enw 'c9' sydd yn cael 'Ble mae&rsquo;r lemwn?' fel testun ac yn cael 'yn' fel perthynas ac yn pryderi y peth sherlock 'lemwn'",
+  "mae cwestiwn o'r enw 'c10' sydd yn cael 'Pa anifail sydd yn chwarae rygbi?' fel testun ac yn cael 'yn cael ei chwarae gan' fel perthynas ac yn pryderi y peth sherlock 'rygbi'",
+  "mae cwestiwn o'r enw 'c11' sydd yn cael 'Pa anifail sydd yn yr Ystafell Caerdydd?' fel testun ac yn cael 'cynnwys' fel gwerth ac yn pryderi y peth sherlock 'ystafell caerdydd'",
+  "mae cwestiwn o'r enw 'c12' sydd yn cael 'Ble mae&rsquo;r oren?' fel testun ac yn cael 'yn' fel perthynas ac yn pryderi y peth sherlock 'oren'",
+  "mae cwestiwn o'r enw 'c13' sydd yn cael 'Pa anifail sydd yn gwisgo het pinc?' fel testun ac yn cael 'yn cael ei wisgo gan' fel perthynas ac yn pryderi y peth sherlock 'pinc'",
+  "mae cwestiwn o'r enw 'c14' sydd yn cael 'Ble mae&rsquo;r Eliffant?' fel testun ac yn cael 'yn' fel perthynas ac yn pryderi y peth sherlock 'eliffant'",
+  "mae cwestiwn o'r enw 'c15' sydd yn cael 'Pa ffrwyth ydy&rsquo;r Sebra yn bwyta?' fel testun ac yn cael 'yn bwyta' fel perthynas ac yn pryderi y peth sherlock 'sebra'",
+  "mae cwestiwn o'r enw 'c16' sydd yn cael 'Pa anifail sydd yn yr Ystafell Abertawe?' fel testun ac yn cael 'cynnwys' fel gwerth ac yn pryderi y peth sherlock 'ystafell abertawe'",
+  "mae cwestiwn o'r enw 'c17' sydd yn cael 'Pa lliw het ydy&rsquo;r Llewpard yn gwisgo?' fel testun ac yn cael 'lliw het' fel gwerth ac yn pryderi y peth sherlock 'llewpard'",
+  "mae cwestiwn o'r enw 'c18' sydd yn cael 'Pa chwaraeon ydy&rsquo;r Eliffant yn chwarae?' fel testun ac yn cael 'yn chwarae' fel perthynas ac yn pryderi y peth sherlock 'eliffant'",
+  "mae cwestiwn o'r enw 'c19' sydd yn cael 'Pa anifail sydd yn bwyta bananas?' fel testun ac yn cael 'yn cael ei fwyta gan' fel perthynas ac yn pryderi y peth sherlock 'banana'",
+  "mae cwestiwn o'r enw 'c20' sydd yn cael 'Ble mae&rsquo;r gellyg?' fel testun ac yn cael 'yn' fel perthynas ac yn pryderi y peth sherlock 'gellygen'",
+  "mae cwestiwn o'r enw 'c21' sydd yn cael 'Pa lliw het ydy&rsquo;r Eliffant in gwisgo?' fel testun ac yn cael 'lliw het' fel gwerth ac yn pryderi y peth sherlock 'eliffant'",
+  "mae cwestiwn o'r enw 'c22' sydd yn cael 'Pa chwaraeon ydy&rsquo;r Hipopotamws yn chwarae?' fel testun ac yn cael 'yn chwarae' fel perthynas ac yn pryderi y peth sherlock hipopotamws'",
+  "mae cwestiwn o'r enw 'c23' sydd yn cael 'Ble mae&rsquo;r Llew?' fel testun ac yn cael 'yn' fel perthynas ac yn pryderi y peth sherlock 'llew'",
+  "mae cwestiwn o'r enw 'c24' sydd yn cael 'Pa lliw het ydy&rsquo;r sebra yn gwisgo?' fel testun ac yn cael 'lliw het' fel gwerth ac yn pryderi y peth sherlock 'sebra'",
+  "mae cwestiwn o'r enw 'c25' sydd yn cael 'Pa chwaraeon ydy&rsquo;r Llewpard yn chwarae?' fel testun ac yn cael 'yn chwarae' fel perthynas ac yn pryderi y peth sherlock 'llewpard'",
+  "mae cwestiwn o'r enw 'c26' sydd yn cael 'Ble mae&rsquo;r Sebra?' fel testun ac yn cael 'yn' fel perthynas ac yn pryderi y peth sherlock 'sebra'",
+  "mae cwestiwn o'r enw 'c27' sydd yn cael 'Pa anifail sydd yn bwyta gellygen?' fel testun ac yn cael 'yn cael ei fwyta gan' fel perthynas ac yn pryderi y peth sherlock 'gellygen'",
+  "mae cwestiwn o'r enw 'c28' sydd yn cael 'Pa chwaraeon ydy&rsquo;r Llew yn chwarae?' fel testun ac yn cael 'yn chwarae' fel perthynas ac yn pryderi y peth sherlock 'llew'",
+  "mae cwestiwn o'r enw 'c29' sydd yn cael 'Pa ffrwyth ydy&rsquo;r Eliffant yn bwyta?' fel testun ac yn cael 'yn bwyta' fel perthynas ac yn pryderi y peth sherlock 'eliffant'",
+  "mae cwestiwn o'r enw 'c30' sydd yn cael 'Pa anifail sydd yn chwarae golff?' fel testun ac yn cael 'yn cael ei chwarae gan' fel perthynas ac yn pryderi y peth sherlock 'golff'",
+  "mae cwestiwn o'r enw 'c31' sydd yn cael 'Pa anifail sydd yn bwyta oren?' fel testun ac yn cael 'yn cael ei fwyta gan' fel perthynas ac yn pryderi y peth sherlock 'oren'",
+  "mae cwestiwn o'r enw 'c32' sydd yn cael 'Pa lliw het ydy&rsquo;r Sebra yn gwisgo?' fel testun ac yn cael 'lliw het' fel gwerth ac yn pryderi y peth sherlock 'sebra'",
+  "mae cwestiwn o'r enw 'c33' sydd yn cael 'Pa anifail sydd yn bwyta afal?' fel testun ac yn cael 'yn cael ei fwyta gan' fel perthynas ac yn pryderi y peth sherlock 'afal'",
+  "mae cwestiwn o'r enw 'c34' sydd yn cael 'Pa ffrwyth sydd yn yr Ystafell Aberystwyth?' fel testun ac yn cael 'cynnwys' fel perthynas ac yn pryderi y peth sherlock 'ystafell aberystwyth'",
+  "mae cwestiwn o'r enw 'c35' sydd yn cael 'Pa anifail sydd yn gwisgo het gwyrdd?' fel testun ac yn cael 'yn cael ei wisgo gan' fel perthynas ac yn pryderi y peth sherlock 'gwyrdd'",
+  "mae cwestiwn o'r enw 'c36' sydd yn cael 'Ble mae&rsquo;r Hipopotamws?' fel testun ac yn cael 'yn' fel perthynas ac yn pryderi y peth sherlock 'hipopotamws'",
+/*
   "there is a question named 'q1' that has 'What animal eats pineapples?' as text and has 'is eaten by' as relationship and concerns the sherlock thing 'pinafal'",
   "there is a question named 'q2' that has 'What sport does Jiraff play?' as text and has 'plays' as relationship and concerns the sherlock thing 'Jiraff'",
   "there is a question named 'q3' that has 'What animal eats apples?' as text and has 'is eaten by' as relationship and concerns the sherlock thing 'afal'",
@@ -177,12 +214,43 @@ var SHERLOCK_CORE = [
   "there is a question named 'q52' that has 'What sport does Hipopotamws play?' as text and has 'plays' as relationship and concerns the sherlock thing 'Hipopotamws'",
   "there is a question named 'q53' that has 'Where is Sebra?' as text and has 'is in' as relationship and concerns the sherlock thing 'Sebra'",
   "there is a question named 'q54' that has 'What sport does Sebra play?' as text and has 'plays' as relationship and concerns the sherlock thing 'Sebra'"
+
+  "mae yr anifail 'Hipopotamws' yn bwyta y ffrwyth 'pinafal'.",
+  "mae yr anifail 'Hipopotamws' yn cael lliw het 'glas' fel lliw het.",
+  "mae yr anifail 'Llew' yn bwyta y ffrwyth 'lemwn'.",
+  "mae y ffrwyth 'afal' yn yr ystafell 'Ystafell Aberystwyth'.",
+  "mae yr anifail 'Hipopotamws' yn yr ystafell 'Ystafell Blaenafon'.",
+  "mae yr anifail 'Sebra' yn chwarae y chwaraeon 'criced'.",
+  "mae yr anifail 'Llewpard' yn yr ystafell 'Ystafell Abertawe'.",
+  "mae yr anifail 'Jiraff' yn cael lliw het 'coch' fel lliw het.",
+  "mae y ffrwyth 'lemwn' yn yr ystafell 'Ystafell Caernarfon'.",
+  "mae yr anifail 'Jiraff' yn chwarae y chwaraeon 'rygbi'.",
+  "mae yr anifail 'Jiraff' yn yr ystafell 'Ystafell Caerdydd'.",
+  "mae y ffrwyth 'oren' yn yr ystafell 'Ystafell Casnewydd'.",
+  "mae yr anifail 'Llew' yn cael lliw het 'pinc' fel lliw het.",
+  "mae yr anifail 'Eliffant' yn yr ystafell 'Ystafell Casnewydd'.",
+  "mae yr anifail 'Sebra' yn bwyta y ffrwyth 'afal'.",
+  "mae yr anifail 'Llewpard' yn cael lliw het 'melyn' fel lliw het.",
+  "mae yr anifail 'Eliffant' yn chwarae y chwaraeon 'tenis'.",
+  "mae yr anifail 'Jiraff' yn bwyta y ffrwyth 'banana'.",
+  "mae y ffrwyth 'gellygen' yn yr ystafell 'Ystafell Abertawe'.",
+  "mae yr anifail 'Eliffant' yn cael lliw het 'gwyrdd' fel lliw het.",
+  "mae yr anifail 'Hipopotamws' yn chwarae y chwaraeon 'pel droed'.",
+  "mae yr anifail 'Llew' yn yr ystafell 'Ystafell Caernarfon'.",
+  "mae yr anifail 'Sebra' yn cael lliw het 'oren' fel lliw het.",
+  "mae yr anifail 'Llewpard' yn chwarae y chwaraeon 'pel fasged'.",
+  "mae yr anifail 'Sebra' yn yr ystafell 'Ystafell Abertystwyth'.",
+  "mae yr anifail 'Llewpard' yn bwyta y ffrwyth 'gellygen'.",
+  "mae yr anifail 'Llew' yn chwarae y chwaraeon 'golff'.",
+  "mae yr anifail 'Eliffant' yn bwyta y ffrwyth 'oren'.",
+  "mae yr anifail 'Eliffant' yn cael lliw het 'gwyrdd' fel lliw het.",
+*/
 ];
 
 var SHERLOCK_NODE = [
-  "there is an agent named 'Mycroft' that has 'http://mycroft.cenode.io' as address",
-  "there is a tell policy named 'p2' that has 'true' as enabled and has the agent 'Mycroft' as target",
-  "there is a listen policy named 'p4' that has 'true' as enabled and has the agent 'Mycroft' as target"  
+//  "there is an agent named 'Mycroft' that has 'http://mycroft.cenode.io' as address",
+//  "there is a tell policy named 'p2' that has 'true' as enabled and has the agent 'Mycroft' as target",
+//  "there is a listen policy named 'p4' that has 'true' as enabled and has the agent 'Mycroft' as target"  
 ];
 
 var settings = {
@@ -719,7 +787,8 @@ window.onresize = function(event) {
 }
 
 window.onbeforeunload = function() { 
-  return "Quitting Sherlock may mean you can't resume from where you left off."; 
+  //return "Quitting Sherlock may mean you can't resume from where you left off."; 
+  return "Gallai gadael Sherlock golygu na allwch chi ailddechrau o ble rydych yn gadael."; 
 };
 
 window.onload = function(){

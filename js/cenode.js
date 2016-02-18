@@ -679,15 +679,24 @@ function CENode(){
       ce = splitit[2];
       post = splitit[3];
     }
-    console.log("Pre1:"+pre+"\nCE1:"+ce+"\nPost1:"+post);
+    if(cw.match(/.* cwestiwn .* testun .* /i)){
+      var splitit = cw.match(/(.* cael ["'])(.*)(["'] fel testun .*)/i);
+      ce = splitit[1]+"xxxxxx"+splitit[3];
+      post = splitit[2];
+    }
+    //console.log("Pre1:"+pre+"\nCE1:"+ce+"\nPost1:"+post);
     ce = ce.replace(/endid/g, "entity"); 
     ce = ce.replace(/peth y gellir ei lleoli/g, "locatable thing"); 
     ce = ce.replace(/lleoliad/g, "location"); 
     ce = ce.replace(/peth y gellir ei delweddu/g, "imageable thing"); 
     ce = ce.replace(/llun/g, "image"); 
+    ce = ce.replace(/cwestiwn/g, "question"); 
+    ce = ce.replace(/testun/g, "text"); 
+    ce = ce.replace(/perthynas/g, "relationship"); 
+    ce = ce.replace(/yn pryderi/g, "concerns"); 
     ce = ce.replace(/peth sherlock/g, "sherlock thing"); 
     ce = ce.replace(/ffrwyth/g, "fruit"); 
-    ce = ce.replace(/ystafell/g, "room"); 
+    ce = ce.replace(/ ystafell/g, " room"); 
     ce = ce.replace(/lliw het/g, "coloured hat"); 
     ce = ce.replace(/chwaraeon/g, "sport"); 
     ce = ce.replace(/anifail/g, "character"); 
@@ -701,6 +710,7 @@ function CENode(){
     ce = ce.replace(/yn preswylio yn/g, "resides in"); 
     ce = ce.replace(/cynnwys ychwanegol/g, "additional contents"); 
     ce = ce.replace(/yn cynnwys/g, "contains"); 
+    ce = ce.replace(/'cynnwys' fel relationship/g, "'contains' as relationship"); 
     ce = ce.replace(/cynnwys/g, "contents"); 
     ce = ce.replace(/cysyniadoli ~/, "conceptualise a ~"); 
     ce = ce.replace(/cysyniadoli yr?/, "conceptualise the"); 
@@ -722,9 +732,16 @@ function CENode(){
     ce = ce.replace(/ ac /g, " and "); 
     ce = ce.replace(/ yr? /g, " the "); 
     ce = ce.replace(/ sydd /g, " that "); 
+    ce = ce.replace(/ gwerth/g, " value"); 
     ce = ce.replace(/ is a the /g, " is in the "); 
     ce = ce.replace(/ yn the /g, " is in the "); 
-    console.log("Pre2:"+pre+"\nCE2:"+ce+"\nPost2:"+post);
+    ce = ce.replace(/'yn'/g, "'is in'"); 
+    ce = ce.replace(/ has the ('[A-Za-z ]*') as/g, " has $1 as"); 
+    //console.log("Pre2:"+pre+"\nCE2:"+ce+"\nPost2:"+post);
+    if(ce.match(/xxxxxx/)){
+      ce = ce.replace(/xxxxxx/, post.replace(/'/g, "\\'")); 
+      post = "";
+    }
     return pre+ce+post;
   };
 
@@ -737,6 +754,10 @@ function CENode(){
     cw = cw.replace(/location/g, "lleoliad"); 
     cw = cw.replace(/imageable thing/g, "peth y gellir ei delweddu"); 
     cw = cw.replace(/image/g, "llun"); 
+    cw = cw.replace(/question/g, "cwestiwn"); 
+    cw = cw.replace(/text/g, "testun"); 
+    cw = cw.replace(/relationship/g, "perthynas"); 
+    cw = cw.replace(/concerns/g, "yn pryderi"); 
     cw = cw.replace(/sherlock thing/g, "peth sherlock"); 
     cw = cw.replace(/fruit/g, "ffrwyth"); 
     cw = cw.replace(/room/g, "ystafell"); 
