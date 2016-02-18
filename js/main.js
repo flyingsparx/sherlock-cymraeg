@@ -12,138 +12,177 @@ var latest_latitude = null;
 var latest_longitude = null;
 
 var logging_configs = [
-  {url: 'http://logger.cenode.io/cards/sherlock', logged_cards: []},
-  {url: 'http://logger2.cenode.io/cards/sherlock', logged_cards: []}
+//  {url: 'http://logger.cenode.io/cards/sherlock', logged_cards: []},
+//  {url: 'http://logger2.cenode.io/cards/sherlock', logged_cards: []}
 ];
 
 var SHERLOCK_CORE = [
-  "conceptualise a ~ sherlock thing ~ S that is an entity and is an imageable thing",
-  "conceptualise an ~ organisation ~ O that is a sherlock thing",
-  "conceptualise a ~ fruit ~ F that is a sherlock thing and is a locatable thing",
-  "conceptualise a ~ room ~ R that is a location and is a sherlock thing",
-  "conceptualise a ~ shirt colour ~ C",
-  "conceptualise a ~ sport ~ S",
-  "conceptualise a ~ character ~ C that is a sherlock thing and is a locatable thing and has the shirt colour C as ~ shirt colour ~",
-  "conceptualise the character C ~ works for ~ the organisation O and ~ eats ~ the fruit F and ~ plays ~ the sport S",
-  "conceptualise the shirt colour C ~ is worn by ~ the character C",
-  "conceptualise the room R ~ contains ~ the fruit F and has the character C as ~ contents ~",
-  "conceptualise the fruit F ~ is eaten by ~ the character C",
-  "conceptualise the sport S ~ is played by ~ the character C",
+  //"conceptualise a ~ sherlock thing ~ S that is an entity and is an imageable thing",
+  "cysyniadoli ~ peth sherlock ~ S sydd yn endid ac yn peth y gellir ei delweddu",
+  //"conceptualise an ~ organisation ~ O that is a sherlock thing",
+  //"cysyniadoli ~ sefydliad ~ O sydd yn peth sherlock",
+  //"conceptualise a ~ fruit ~ F that is a sherlock thing and is a locatable thing",
+  "cysyniadoli ~ ffrwyth ~ F sydd yn peth sherlock ac yn peth y gellir ei lleoli",
+  //"conceptualise a ~ room ~ R that is a location and is a sherlock thing",
+
+  "cysyniadoli ~ ystafell ~ R sydd yn lleoliad ac yn peth sherlock",
+  //"conceptualise a ~ shirt colour ~ C",
+  "cysyniadoli ~ lliw het ~ C",
+  //"conceptualise a ~ sport ~ S",
+  "cysyniadoli ~ chwaraeon ~ S",
+  //"conceptualise a ~ character ~ C that is a sherlock thing and is a locatable thing and has the shirt colour C as ~ shirt colour ~",
+  "cysyniadoli ~ anifail ~ C sydd yn peth sherlock ac yn peth y gellir ei lleoli ac yn cael lliw het C fel ~ lliw het ~",
+  //"conceptualise the character C ~ works for ~ the organisation O and ~ eats ~ the fruit F and ~ plays ~ the sport S",
+  //"cysyniadoli yr anifail C ~ yn gweithio i ~ y sefydliad O ac ~ yn bwyta ~ y ffrwyth F ac ~ yn chawarae ~ y chwaraeon S",
+  "cysyniadoli yr anifail C ~ yn bwyta ~ y ffrwyth F ac ~ yn chwarae ~ y chwaraeon S",
+  //"conceptualise the shirt colour C ~ is worn by ~ the character C",
+  "cysyniadoli y lliw het C ~ yn cael ei wisgo gan ~ yr anifail C",
+  //"conceptualise the room R ~ contains ~ the fruit F and has the character C as ~ contents ~",
+  "cysyniadoli yr ystafell R ~ yn cynnwys ~ y ffrwyth F ac yn cael yr anifail C fel ~ cynnwys ~",
+  //"conceptualise the fruit F ~ is eaten by ~ the character C",
+  "cysyniadoli y ffrwyth F  ~ yn cael ei fwyta gan ~ yr anifail C",
+  //"conceptualise the sport S ~ is played by ~ the character C",
+  "cysyniadoli y chwaraeon S  ~ yn cael ei chwarae gan ~ yr anifail C",
+  
   "conceptualise a ~ question ~ Q that has the value V as ~ text ~ and has the value W as ~ value ~ and has the value X as ~ relationship ~",
+  //"cysyniadoli ~ cwestiwn ~ Q sydd yn cael y gwerth V fel  ~ testun ~ ac yn cael y gwerth W fel  ~ gwerth ~ ac yn cael y gwerth X fel  ~ perthynas ~",
   "conceptualise the question Q ~ concerns ~ the sherlock thing C",
+  //"cysyniadoli y cwestion Q ~ yn pryderi ~ y peth sherlock C",
 
   "there is a rule named r1 that has 'if the character C ~ eats ~ the fruit F then the fruit F ~ is eaten by ~ the character C' as instruction",
   "there is a rule named r2 that has 'if the character C ~ plays ~ the sport S then the sport S ~ is played by ~ the character C' as instruction",
-  "there is a rule named r3 that has 'if the character C has the shirt colour S as ~ shirt colour ~ then the shirt colour S ~ is worn by ~ the character C' as instruction",
+  "there is a rule named r3 that has 'if the character C has the coloured hat S as ~ coloured hat ~ then the coloured hat S ~ is worn by ~ the character C' as instruction",
   "there is a rule named r4 that has 'if the character C ~ is in ~ the room R then the room R has the character C as ~ contents ~' as instruction",
   "there is a rule named r5 that has 'if the fruit F ~ is in ~ the room R then the room R ~ contains ~ the fruit F' as instruction",
   
   // Inverse rules:
   "there is a rule named r6 that has 'if the fruit F ~ is eaten by ~ the character C then the character C ~ eats ~ the fruit F' as instruction",
   "there is a rule named r7 that has 'if the sport S ~ is played by ~ the character C then the character C ~ plays ~ the sport S' as instruction",
-  "there is a rule named r8 that has 'if the shirt colour S ~ is worn by ~ the character C then the character C has the shirt colour S as ~ shirt colour ~' as instruction",
+  "there is a rule named r8 that has 'if the coloured hat S ~ is worn by ~ the character C then the character C has the coloured hat S as ~ coloured hat ~' as instruction",
   "there is a rule named r9 that has 'if the room R has the character C as ~ contents ~ then the character C ~ is in ~ the room R' as instruction",
   "there is a rule named r10 that has 'if the room R ~ contains ~ the fruit F then the fruit F ~ is in ~ the room R' as instruction",
 
-  "there is an organisation named 'police'",
-  "there is a character named 'Prof Crane' that has 'http://sherlock.cenode.io/media/crane.png' as image",
-  "there is a character named 'Dr Finch' that has 'http://sherlock.cenode.io/media/finch.png' as image",
-  "there is a character named 'Col Robin' that has 'http://sherlock.cenode.io/media/robin.png' as image",
-  "there is a character named 'Sgt Stork' that has 'http://sherlock.cenode.io/media/stork.png' as image",
-  "there is a character named 'Rev Hawk' that has 'http://sherlock.cenode.io/media/hawk.png' as image",
-  "there is a character named 'Capt Falcon' that has 'http://sherlock.cenode.io/media/falcon.png' as image",
-  "there is a room named 'Ruby Room'",
-  "there is a room named 'Sapphire Room'",
-  "there is a room named 'Gold Room'",
-  "there is a room named 'Amber Room'",
-  "there is a room named 'Emerald Room'",
-  "there is a room named 'Silver Room'",
-  "there is a fruit named 'pineapple'",
-  "there is a fruit named 'apple'",
-  "there is a fruit named 'banana'",
-  "there is a fruit named 'orange'",
-  "there is a fruit named 'lemon'",
-  "there is a fruit named 'pear'",
-  "there is a fruit named 'grape'",
-  "there is a fruit named 'kiwi'",
-  "there is a fruit named 'tomato'",
-  "there is a shirt colour named 'green'",
-  "there is a shirt colour named 'red'",
-  "there is a shirt colour named 'yellow'",
-  "there is a shirt colour named 'black'",
-  "there is a shirt colour named 'white'",
-  "there is a shirt colour named 'purple'",
-  "there is a shirt colour named 'pink'",
-  "there is a shirt colour named 'blue'",
-  "there is a shirt colour named 'brown'",
-  "there is a shirt colour named 'grey'",
-  "there is a sport named 'tennis'",
-  "there is a sport named 'badminton'",
-  "there is a sport named 'rugby'",
-  "there is a sport named 'football'",
-  "there is a sport named 'soccer'",
-  "there is a sport named 'running'",
-  "there is a sport named 'swimming'",
-  "there is a sport named 'athletic'",
-  "there is a sport named 'baseball'",
-  "there is a sport named 'rounders'",
-  "there is a sport named 'softball'",
-  "there is a sport named 'cricket'",
-  "there is a sport named 'golf'",
+  //"there is an organisation named 'police'",
+  //"there is a character named 'Prof Crane' that has 'http://sherlock.cenode.io/media/crane.png' as image",
+  "mae anifail o'r enw 'Eliffant' sydd yn cael 'http://sherlockcymraeg.cenode.io/media/Eliffant.png' fel llun.", // ac yn yr ystafell 'Ystafell Casnewydd' ac yn bwyta y ffrwyth 'oren' ac yn chwarae y chwaraeon 'tenis' ac yn cael lliw het 'gwyrdd' fel lliw het",
+  //"there is a character named 'Dr Finch' that has 'http://sherlock.cenode.io/media/finch.png' as image",
+  "mae anifail o'r enw 'Jiraff' sydd yn cael 'http://sherlockcymraeg.cenode.io/media/Jiraff.png' fel llun",
+  //"there is a character named 'Col Robin' that has 'http://sherlock.cenode.io/media/robin.png' as image",
+  "mae anifail o'r enw 'Hipopotamws' sydd yn cael 'http://sherlockcymraeg.cenode.io/media/Hipopotamws.png' fel llun",
+  //"there is a character named 'Sgt Stork' that has 'http://sherlock.cenode.io/media/stork.png' as image",
+  "mae anifail o'r enw 'Llew' sydd yn cael 'http://sherlockcymraeg.cenode.io/media/Llew.png' fel llun",
+  //"there is a character named 'Rev Hawk' that has 'http://sherlock.cenode.io/media/hawk.png' as image",
+  "mae anifail o'r enw 'Llewpard' sydd yn cael 'http://sherlockcymraeg.cenode.io/media/Llewpard.png' fel llun",
+  //"there is a character named 'Capt Falcon' that has 'http://sherlock.cenode.io/media/falcon.png' as image",
+  "mae anifail o'r enw 'Sebra' sydd yn cael 'http://sherlockcymraeg.cenode.io/media/Sebra.png' fel llun",
+  //"there is a room named 'Ruby Room'",
+  "mae ystafell o'r enw 'Ystafell Casnewydd'",
+  //"there is a room named 'Sapphire Room'",
+  "mae ystafell o'r enw 'Ystafell Caerdydd'",
+  //"there is a room named 'Gold Room'",
+  "mae ystafell o'r enw 'Ystafell Blaenafon'",
+  //"there is a room named 'Amber Room'",
+  "mae ystafell o'r enw 'Ystafell Caernarfon'",
+  //"there is a room named 'Emerald Room'",
+  "mae ystafell o'r enw 'Ystafell Abertawe'",
+  //"there is a room named 'Silver Room'",
+  "mae ystafell o'r enw 'Ystafell Aberystwyth'",
+  //"there is a fruit named 'pineapple'",
+  "mae ffrwyth o'r enw 'pinafal'",
+  //"there is a fruit named 'apple'",
+  "mae ffrwyth o'r enw 'afal'",
+  //"there is a fruit named 'banana'",
+  "mae ffrwyth o'r enw 'banana'",
+  //"there is a fruit named 'orange'",
+  "mae ffrwyth o'r enw 'oren'",
+  //"there is a fruit named 'lemon'",
+  "mae ffrwyth o'r enw 'lemwn'",
+  //"there is a fruit named 'pear'",
+  "mae ffrwyth o'r enw 'gellygen'",
+  //"there is a shirt colour named 'green'",
+  "mae lliw het o'r enw 'gwyrdd'",
+  //"there is a shirt colour named 'red'",
+  "mae lliw het o'r enw 'coch'",
+  //"there is a shirt colour named 'yellow'",
+  "mae lliw het o'r enw 'glas'",
+  //"there is a shirt colour named 'black'",
+  "mae lliw het o'r enw 'pinc'",
+  //"there is a shirt colour named 'white'",
+  "mae lliw het o'r enw 'melyn'",
+  //"there is a shirt colour named 'purple'",
+  "mae lliw het o'r enw 'oren'",
+  //"there is a sport named 'tennis'",
+  "mae chwaraeon o'r enw 'tenis'",
+  //"there is a sport named 'badminton'",
+  "mae chwaraeon o'r enw 'rygbi'",
+  //"there is a sport named 'rugby'",
+  "mae chwaraeon o'r enw 'pel droed'",
+  //"there is a sport named 'football'",
+  "mae chwaraeon o'r enw 'golff'",
+  //"there is a sport named 'soccer'",
+  "mae chwaraeon o'r enw 'pel fasged'",
+  //"there is a sport named 'running'",
+  "mae chwaraeon o'r enw 'criced'",
 
-  "conceptualise an ~ object ~ O that is an entity",
-  "conceptualise the object O ~ resides in ~ the room R",
-  "conceptualise the room R has the object O as ~ additional contents ~",
-  "there is a rule named objectrule1 that has 'if the object O ~ is in ~ the room R then the room R has the object O as ~ additional contents ~' as instruction",
-  "there is an object named 'gorilla'",
-  "there is an object named 'dinosaur'",
-  "there is an object named 'robot'",
-  "there is an object named 'elephant'",
-  "there is an object named 'ghost'",
-  "there is an object named 'balloon'",
+  //"conceptualise an ~ object ~ O that is an entity",
+  "cysyniadoli ~ gwrthrych ~ O sydd yn endid",
+  //"conceptualise the object O ~ resides in ~ the room R",
+  "cysyniadoli y gwrthrych O ~ yn preswylio yn ~ yr ystafell R",
+  //"conceptualise the room R has the object O as ~ additional contents ~",
+  "cysyniadoli yr ystafell R yn cael y gwrthrych O fel ~ cynnwys ychwanegol ~",
+  "there is a rule named objectrule1 that has 'if the object O ~ resides in ~ the room R then the room R has the object O as ~ additional contents ~' as instruction",
+  //"mae rehol o'r enw rheolgwrthrych1 sydd yn cael 'os mae y gwrthrych O ~ yn ~ yr ystafell R mae yr ystafell R yn cel y gwrthrych O fel  ~ cynnwys ychwanegol ~' fel cyfarwyddyd",
+  //"there is an object named 'gorilla'",
+  "mae gwrthrych o'r enw 'gorila'",
+  //"there is an object named 'robot'",
+  "mae gwrthrych o'r enw 'robot'",
+  //"there is an object named 'ghost'",
+  "mae gwrthrych o'r enw 'ysbryd'",
+  //"there is an object named 'balloon'",
+  "mae gwrthrych o'r enw 'balwn'",
 
-  "there is a question named 'q1' that has 'What character eats pineapples?' as text and has 'is eaten by' as relationship and concerns the sherlock thing 'pineapple'",
-  "there is a question named 'q2' that has 'What sport does Dr Finch play?' as text and has 'plays' as relationship and concerns the sherlock thing 'Dr Finch'",
-  "there is a question named 'q3' that has 'What character eats apples?' as text and has 'is eaten by' as relationship and concerns the sherlock thing 'apple'",
-  "there is a question named 'q4' that has 'What colour shirt is Prof Crane wearing?' as text and has 'shirt colour' as value and concerns the sherlock thing 'Prof Crane'",
-  "there is a question named 'q6' that has 'Where is Col Robin?' as text and has 'is in' as relationship and concerns the sherlock thing 'Col Robin'",
-  "there is a question named 'q7' that has 'What colour shirt is Sgt Stork wearing?' as text and has 'shirt colour' as value and concerns the sherlock thing 'Sgt Stork'",
-  "there is a question named 'q8' that has 'Where is Sgt Stork?' as text and has 'is in' as relationship and concerns the sherlock thing 'Sgt Stork'",
-  "there is a question named 'q9' that has 'Which character is in the emerald room?' as text and has 'contents' as value and concerns the sherlock thing 'Emerald Room'",
-  "there is a question named 'q12' that has 'What character eats bananas?' as text and has 'is eaten by' as relationship and concerns the sherlock thing 'banana'",
-  "there is a question named 'q13' that has 'What character is in the sapphire room?' as text and has 'contents' as value and concerns the sherlock thing 'Sapphire Room'",
-  "there is a question named 'q17' that has 'What sport does Prof Crane play?' as text and has 'plays' as relationship and concerns the sherlock thing 'Prof Crane'",
-  "there is a question named 'q18' that has 'What character is wearing a red shirt?' as text and has 'is worn by' as relationship and concerns the sherlock thing 'red'",
-  "there is a question named 'q19' that has 'What character plays rugby?' as text and has 'is played by' as relationship and concerns the sherlock thing 'rugby'",
-  "there is a question named 'q20' that has 'What fruit does Rev Hawk eat?' as text and has 'eats' as relationship and concerns the sherlock thing 'Rev Hawk'",
-  "there is a question named 'q23' that has 'What fruit does Col Robin eat?' as text and has 'eats' as relationship and concerns the sherlock thing 'Col Robin'",
-  "there is a question named 'q24' that has 'What colour shirt is Dr Finch wearing?' as text and has 'shirt colour' as value and concerns the sherlock thing 'Dr Finch'",
-  "there is a question named 'q25' that has 'Where is the apple?' as text and has 'is in' as relationship and concerns the sherlock thing 'apple'",
-  "there is a question named 'q26' that has 'What character is wearing a yellow shirt?' as text and has 'is worn by' as relationship and concerns the sherlock thing 'yellow'",
-  "there is a question named 'q28' that has 'What fruit is in the silver room?' as text and has 'contains' as relationship and concerns the sherlock thing 'Silver Room'",
-  "there is a question named 'q30' that has 'What character is wearing a black shirt?' as text and has 'is worn by' as relationship and concerns the sherlock thing 'black'",
-  "there is a question named 'q31' that has 'What character eats lemons?' as text and has 'is eaten by' as relationship and concerns the sherlock thing 'lemon'",
-  "there is a question named 'q33' that has 'What fruit does Prof Crane eat?' as text and has 'eats' as relationship and concerns the sherlock thing 'Prof Crane'",
-  "there is a question named 'q34' that has 'What character plays baseball?' as text and has 'is played by' as relationship and concerns the sherlock thing 'baseball'",
-  "there is a question named 'q35' that has 'What character plays soccer?' as text and has 'is played by' as relationship and concerns the sherlock thing 'soccer'",
-  "there is a question named 'q36' that has 'What sport does Sgt Stork play?' as text and has 'plays' as relationship and concerns the sherlock thing 'Sgt Stork'",
-  "there is a question named 'q37' that has 'What character is in the ruby room?' as text and has 'contents' as value and concerns the sherlock thing 'Ruby Room'",
-  "there is a question named 'q39' that has 'What character plays golf?' as text and has 'is played by' as relationship and concerns the sherlock thing 'golf'",
-  "there is a question named 'q40' that has 'What character eats oranges?' as text and has 'is eaten by' as relationship and concerns the sherlock thing 'orange'",
-  "there is a question named 'q41' that has 'What colour shirt is Capt Falcon wearing?' as text and has 'shirt colour' as value and concerns the sherlock thing 'Capt Falcon'",
-  "there is a question named 'q45' that has 'What character is in the amber room?' as text and has 'contents' as value and concerns the sherlock thing 'Amber Room'",
-  "there is a question named 'q47' that has 'Where is Prof Crane?' as text and has 'is in' as relationship and concerns the sherlock thing 'Prof Crane'",
-  "there is a question named 'q48' that has 'Where is the pear?' as text and has 'is in' as relationship and concerns the sherlock thing 'pear'",
-  "there is a question named 'q50' that has 'What fruit does Sgt Stork eat?' as text and has 'eats' as relationship and concerns the sherlock thing 'Sgt Stork'",
-  "there is a question named 'q52' that has 'What sport does Col Robin play?' as text and has 'plays' as relationship and concerns the sherlock thing 'Col Robin'",
-  "there is a question named 'q53' that has 'Where is Capt Falcon?' as text and has 'is in' as relationship and concerns the sherlock thing 'Capt Falcon'",
-  "there is a question named 'q54' that has 'What sport does Capt Falcon play?' as text and has 'plays' as relationship and concerns the sherlock thing 'Capt Falcon'"
+  "there is a question named 'q1' that has 'What animal eats pineapples?' as text and has 'is eaten by' as relationship and concerns the sherlock thing 'pinafal'",
+  "there is a question named 'q2' that has 'What sport does Jiraff play?' as text and has 'plays' as relationship and concerns the sherlock thing 'Jiraff'",
+  "there is a question named 'q3' that has 'What animal eats apples?' as text and has 'is eaten by' as relationship and concerns the sherlock thing 'afal'",
+  "there is a question named 'q4' that has 'What colour hat is Eliffant wearing?' as text and has 'coloured hat' as value and concerns the sherlock thing 'Eliffant'",
+  "there is a question named 'q6' that has 'Where is Hipopotamws?' as text and has 'is in' as relationship and concerns the sherlock thing 'Hipopotamws'",
+  "there is a question named 'q7' that has 'What colour hat is Llew wearing?' as text and has 'coloured hat' as value and concerns the sherlock thing 'Llew'",
+  "there is a question named 'q8' that has 'Where is Llew?' as text and has 'is in' as relationship and concerns the sherlock thing 'Llew'",
+  "there is a question named 'q9' that has 'Which animal is in the emerald room?' as text and has 'contents' as value and concerns the sherlock thing 'Ystafell Abertawe'",
+  "there is a question named 'q12' that has 'What animal eats bananas?' as text and has 'is eaten by' as relationship and concerns the sherlock thing 'banana'",
+  "there is a question named 'q13' that has 'What animal is in the sapphire room?' as text and has 'contents' as value and concerns the sherlock thing 'Ystafell Caerdydd'",
+  "there is a question named 'q17' that has 'What sport does Eliffant play?' as text and has 'plays' as relationship and concerns the sherlock thing 'Eliffant'",
+  "there is a question named 'q18' that has 'What animal is wearing a red hat?' as text and has 'is worn by' as relationship and concerns the sherlock thing 'coch'",
+  "there is a question named 'q19' that has 'What animal plays rugby?' as text and has 'is played by' as relationship and concerns the sherlock thing 'rygbi'",
+  "there is a question named 'q20' that has 'What fruit does Llewpard eat?' as text and has 'eats' as relationship and concerns the sherlock thing 'Llewpard'",
+  "there is a question named 'q23' that has 'What fruit does Hipopotamws eat?' as text and has 'eats' as relationship and concerns the sherlock thing 'Hipopotamws'",
+  "there is a question named 'q24' that has 'What colour hat is Jiraff wearing?' as text and has 'coloured hat' as value and concerns the sherlock thing 'Jiraff'",
+  "there is a question named 'q25' that has 'Where is the apple?' as text and has 'is in' as relationship and concerns the sherlock thing 'afal'",
+  "there is a question named 'q26' that has 'What animal is wearing a blue hat?' as text and has 'is worn by' as relationship and concerns the sherlock thing 'glas'",
+  "there is a question named 'q28' that has 'What fruit is in the silver room?' as text and has 'contains' as relationship and concerns the sherlock thing 'Ystafell Aberystwyth'",
+  "there is a question named 'q30' that has 'What animal is wearing a pink hat?' as text and has 'is worn by' as relationship and concerns the sherlock thing 'pink'",
+  "there is a question named 'q31' that has 'What animal eats lemons?' as text and has 'is eaten by' as relationship and concerns the sherlock thing 'lemwn'",
+  "there is a question named 'q33' that has 'What fruit does Eliffant eat?' as text and has 'eats' as relationship and concerns the sherlock thing 'Eliffant'",
+  "there is a question named 'q34' that has 'What animal plays baseball?' as text and has 'is played by' as relationship and concerns the sherlock thing 'baseball'",
+  "there is a question named 'q35' that has 'What animal plays soccer?' as text and has 'is played by' as relationship and concerns the sherlock thing 'pel droed'",
+  "there is a question named 'q36' that has 'What sport does Llew play?' as text and has 'plays' as relationship and concerns the sherlock thing 'Llew'",
+  "there is a question named 'q37' that has 'What animal is in the ruby room?' as text and has 'contents' as value and concerns the sherlock thing 'Ystafell Casnewydd'",
+  "there is a question named 'q39' that has 'What animal plays golf?' as text and has 'is played by' as relationship and concerns the sherlock thing 'golff'",
+  "there is a question named 'q40' that has 'What animal eats oranges?' as text and has 'is eaten by' as relationship and concerns the sherlock thing 'oren'",
+  "there is a question named 'q41' that has 'What colour hat is Sebra wearing?' as text and has 'coloured hat' as value and concerns the sherlock thing 'Sebra'",
+  "there is a question named 'q45' that has 'What animal is in the amber room?' as text and has 'contents' as value and concerns the sherlock thing 'Ystafell Caernarfon'",
+  "there is a question named 'q47' that has 'Where is Eliffant?' as text and has 'is in' as relationship and concerns the sherlock thing 'Eliffant'",
+  "there is a question named 'q48' that has 'Where is the pear?' as text and has 'is in' as relationship and concerns the sherlock thing 'gellygen'",
+  "there is a question named 'q50' that has 'What fruit does Llew eat?' as text and has 'eats' as relationship and concerns the sherlock thing 'Llew'",
+  "there is a question named 'q52' that has 'What sport does Hipopotamws play?' as text and has 'plays' as relationship and concerns the sherlock thing 'Hipopotamws'",
+  "there is a question named 'q53' that has 'Where is Sebra?' as text and has 'is in' as relationship and concerns the sherlock thing 'Sebra'",
+  "there is a question named 'q54' that has 'What sport does Sebra play?' as text and has 'plays' as relationship and concerns the sherlock thing 'Sebra'"
 ];
 
 var SHERLOCK_NODE = [
-  "there is an agent named 'Mycroft' that has 'http://mycroft.cenode.io' as address",
-  "there is a tell policy named 'p2' that has 'true' as enabled and has the agent 'Mycroft' as target",
-  "there is a listen policy named 'p4' that has 'true' as enabled and has the agent 'Mycroft' as target"  
+//  "there is an agent named 'Mycroft' that has 'http://mycroft.cenode.io' as address",
+//  "there is a tell policy named 'p2' that has 'true' as enabled and has the agent 'Mycroft' as target",
+//  "there is a listen policy named 'p4' that has 'true' as enabled and has the agent 'Mycroft' as target"  
 ];
 
 var settings = {
@@ -364,18 +403,21 @@ function send(){
     }
     return;
   }
-  else if(sentence.toLowerCase().indexOf("who ") == 0 || sentence.toLowerCase().indexOf("what ") == 0 || sentence.toLowerCase().indexOf("where ") == 0 || sentence.toLowerCase().indexOf("list ") == 0){
+  else if(sentence.toLowerCase().indexOf("who ") == 0 || sentence.toLowerCase().indexOf("what ") == 0 || sentence.toLowerCase().indexOf("where ") == 0 || sentence.toLowerCase().indexOf("list ") == 0 || sentence.toLowerCase().indexOf("beth ") == 0){
     card = "there is an ask card named 'msg_{uid}' that has '"+sentence+"' as content and is to the agent '"+node.agent.get_name().replace(/'/g, "\\'")+"' and is from the individual '"+user.id+"' and has the timestamp '{now}' as timestamp";
     add_card_simple(input, 'user');
   }
   else{
     if(submitted_statements.indexOf(input.toLowerCase()) > -1 ){
-      add_card_simple("I cannot accept duplicate information from the same user.", 'friend');
-      return window.alert("The input is invalid or you've already entered this information!");
+      //add_card_simple("I cannot accept duplicate information from the same user.", 'friend');
+      add_card_simple("Dydw i ddim yn gallu derbyn gwybodaeth dyblyg o'r un defnyddiwr.", 'friend');
+      //return window.alert("The input is invalid or you've already entered this information!");
+      return window.alert("Mae'r mewnbwn yn annilys neu rwyt ti wedi cofrestru'r wybodaeth hon yn barod!");
     }
     submitted_statements.push(input.toLowerCase());
 
-    card = "there is an nl card named 'msg_{uid}' that has '"+sentence+"' as content and is to the agent '"+node.agent.get_name().replace(/'/g, "\\'")+"' and is from the individual '"+user.id+"' and has the timestamp '{now}' as timestamp";
+    card = "there is an nl card named 'msg_{uid}' that has '"+sentence+"' as content and has '"+sentence+"' as verbatim and is to the agent '"+node.agent.get_name().replace(/'/g, "\\'")+"' and is from the individual '"+user.id+"' and has the timestamp '{now}' as timestamp";
+
     add_card_simple(input, 'user');
   }
   node.add_sentence(card);
@@ -419,7 +461,7 @@ function unconfirm_card(id){
 function update_ui(){
   if(settings.logged_in == true){
     ui.overlays.login.style.display = "none";
-    ui.info.score.innerHTML = user.score+' points';
+    ui.info.score.innerHTML = user.score+' pwyntiau';
     if(user.selected_screen == "moira"){
       ui.overlays.moira.style.display = "block"; 
       ui.overlays.dashboard.style.display = "none";
@@ -453,6 +495,11 @@ function add_card(card){
   var linked_content = card.linked_content;
   
   if(!content){return;}
+
+  var eng = content;
+  content = node.ce_to_cw(content);
+  //if (content != eng) console.log("CE:"+eng+"\nCW:"+content);
+  
   if(id == null || (id != null && shown_cards.indexOf(id) == -1)){
     shown_cards.push(id);
     navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
@@ -471,8 +518,8 @@ function add_card(card){
     }
     c+=content.replace(/(?:\r\n|\r|\n)/g, ' <br /> ').replace(/  /g, '&nbsp;&nbsp;')+'</p>';
     if(card_type != null && card_type.name == "confirm card"){
-      c+='<button id="confirm_'+id+'" class="confirm" onclick="confirm_card(\''+id+'\', \''+content.replace(/'/g, "\\'")+'\')">Yes</button>';
-      c+='<button id="unconfirm_'+id+'" class="unconfirm" onclick="unconfirm_card(\''+id+'\')">No</button>';
+      c+='<button id="confirm_'+id+'" class="confirm" onclick="confirm_card(\''+id+'\', \''+content.replace(/'/g, "\\'")+'\')">Ie</button>';
+      c+='<button id="unconfirm_'+id+'" class="unconfirm" onclick="unconfirm_card(\''+id+'\')">Na</button>';
       forbid_input = true;
     }
     if(linked_content != null){
@@ -592,7 +639,7 @@ function poll_for_instances(){
 function log_cards(config){
   try{
     var cards = node.get_instances("card", true);
-    var properties = ['timestamp', 'content', 'is in reply to', 'is from', 'number of keystrokes', 'submit time', 'start time', 'latitude', 'longitude'];
+    var properties = ['timestamp', 'content', 'verbatim', 'is in reply to', 'is from', 'number of keystrokes', 'submit time', 'start time', 'latitude', 'longitude'];
     var unlogged_cards = [];
     for(var i = 0; i < cards.length; i++){
       if(config.logged_cards.indexOf(cards[i].name) == -1){
@@ -616,6 +663,7 @@ function log_cards(config){
     }  
 
     var xhr = new XMLHttpRequest();
+    console.log('logging to',config.url);
     xhr.open("POST", config.url);
     xhr.onreadystatechange = function(){
       if(xhr.readyState == 4 && xhr.status == 200){
@@ -624,21 +672,22 @@ function log_cards(config){
             config.logged_cards.push(unlogged_cards[i].name);
           }
           log_cards(config);
-        }, 10000);
+        }, 8000);
       }
       else if(xhr.readyState == 4 && xhr.status != 200){
         setTimeout(function(){
           log_cards(config);
-        }, 5000);
+        }, 3000);
       }
     }
+    console.log(unlogged_cards);
     xhr.send(JSON.stringify(unlogged_cards));
   }
   catch(err){
     console.log(err);
     setTimeout(function(){
       log_cards(config);
-    }, 5000);
+    }, 3000);
   }
 }
 
