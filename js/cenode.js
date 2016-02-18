@@ -1362,7 +1362,8 @@ function CENode(){
     t = t.replace(/'/g, '').replace(/\./g, '');
     var tokens = t.split(" ");
     var and_facts = t.split(/\band\b/);
-
+    
+    //console.log("NL:"+tokens);
     // Try to find any mentions of known instances and tie them together using
     // values and relationships.
     
@@ -1481,7 +1482,8 @@ function CENode(){
         return [true, "there is a "+_concepts[i].name+" named '"+_concepts[i].name+" "+_instances.length+1+"'"];
       }
     }
-    return [false, "Un-parseable input: "+t];
+    //return [false, "Un-parseable input: "+t];
+    return [false, "Mewnbwn yn-parseable: "+t];
   }
 
   /*

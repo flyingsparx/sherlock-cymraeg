@@ -73,10 +73,10 @@ var SHERLOCK_CORE = [
   "mae anifail o'r enw 'Jiraff' sydd yn cael 'http://sherlockcymraeg.cenode.io/media/Jiraff.png' fel llun",
   //"there is a character named 'Col Robin' that has 'http://sherlock.cenode.io/media/robin.png' as image",
   "mae anifail o'r enw 'Hipopotamws' sydd yn cael 'http://sherlockcymraeg.cenode.io/media/Hipopotamws.png' fel llun",
-  //"there is a character named 'Sgt Stork' that has 'http://sherlock.cenode.io/media/stork.png' as image",
-  "mae anifail o'r enw 'Llew' sydd yn cael 'http://sherlockcymraeg.cenode.io/media/Llew.png' fel llun",
   //"there is a character named 'Rev Hawk' that has 'http://sherlock.cenode.io/media/hawk.png' as image",
   "mae anifail o'r enw 'Llewpard' sydd yn cael 'http://sherlockcymraeg.cenode.io/media/Llewpard.png' fel llun",
+  //"there is a character named 'Sgt Stork' that has 'http://sherlock.cenode.io/media/stork.png' as image",
+  "mae anifail o'r enw 'Llew' sydd yn cael 'http://sherlockcymraeg.cenode.io/media/Llew.png' fel llun",
   //"there is a character named 'Capt Falcon' that has 'http://sherlock.cenode.io/media/falcon.png' as image",
   "mae anifail o'r enw 'Sebra' sydd yn cael 'http://sherlockcymraeg.cenode.io/media/Sebra.png' fel llun",
   //"there is a room named 'Ruby Room'",
@@ -724,7 +724,7 @@ function log_cards(config){
             card_to_log[prop] = cards[i].property(prop).name || cards[i].property(prop);
           }
         }
-        console.log("LOG:"+card_to_log);
+        //console.log("LOG:"+card_to_log);
         unlogged_cards.push(card_to_log);
       }  
     }
