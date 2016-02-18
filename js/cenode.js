@@ -1263,7 +1263,7 @@ function CENode(){
       return [true, message.substring(0, message.length - 4)+"."];
     }
 
-    else if(t.match(/^(\bwho\b|\bwhat\b|\bpwy\b|\bbeth\b) (?:is|are|yn)/i)){
+    else if(t.match(/^(\bwho\b|\bwhat\b|\bpwy\b|\bbeth\b) (?:is|are|yw)/i)){
     //else if(t.match(/^(\bpwy\b|\bbeth\b) (?:yn)/i)){
       t = t.replace(/\?/g,'').replace(/'/g, '').replace(/\./g, '');
 
@@ -1278,7 +1278,7 @@ function CENode(){
       }
 
       // Otherwise, try and infer it
-      name = t.match(/^(\bwho\b|\bwhat\b|\bpwy\b|\bbeth\b) (?:is|are|yn)(?: \ban?\b | \bthe\b | )([a-zA-Z0-9_ ]*)/i)[1].replace(/\?/g, '').replace(/'/g, '');
+      name = t.match(/^(\bwho\b|\bwhat\b|\bpwy\b|\bbeth\b) (?:is|are|yw)(?: \ban?\b | \bthe\b | )([a-zA-Z0-9_ ]*)/i)[1].replace(/\?/g, '').replace(/'/g, '');
       instance = get_instance_by_name(name);
       if(instance == null){
         var concept = get_concept_by_name(name);
