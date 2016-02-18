@@ -12,8 +12,8 @@ var latest_latitude = null;
 var latest_longitude = null;
 
 var logging_configs = [
-//  {url: 'http://logger.cenode.io/cards/sherlock', logged_cards: []},
-//  {url: 'http://logger2.cenode.io/cards/sherlock', logged_cards: []}
+  {url: 'http://logger.cenode.io/cards/sherlock', logged_cards: []},
+  {url: 'http://logger2.cenode.io/cards/sherlock', logged_cards: []}
 ];
 
 var SHERLOCK_CORE = [
@@ -180,9 +180,9 @@ var SHERLOCK_CORE = [
 ];
 
 var SHERLOCK_NODE = [
-//  "there is an agent named 'Mycroft' that has 'http://mycroft.cenode.io' as address",
-//  "there is a tell policy named 'p2' that has 'true' as enabled and has the agent 'Mycroft' as target",
-//  "there is a listen policy named 'p4' that has 'true' as enabled and has the agent 'Mycroft' as target"  
+  "there is an agent named 'Mycroft' that has 'http://mycroft.cenode.io' as address",
+  "there is a tell policy named 'p2' that has 'true' as enabled and has the agent 'Mycroft' as target",
+  "there is a listen policy named 'p4' that has 'true' as enabled and has the agent 'Mycroft' as target"  
 ];
 
 var settings = {
@@ -652,6 +652,7 @@ function log_cards(config){
             card_to_log[prop] = cards[i].property(prop).name || cards[i].property(prop);
           }
         }
+        console.log("LOG:"+card_to_log);
         unlogged_cards.push(card_to_log);
       }  
     }

@@ -531,7 +531,8 @@ function CENode(){
         for(fact in facts){
           gist += " "+fact;
           if(facts[fact] > 1){
-            gist += " ("+facts[fact]+" times)";
+            //gist += " ("+facts[fact]+" times)";
+            gist += " ("+facts[fact]+" o weithiau)";
           }
           gist += " and";
         }
