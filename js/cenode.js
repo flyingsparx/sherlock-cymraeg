@@ -1268,7 +1268,7 @@ function CENode(){
       t = t.replace(/\?/g,'').replace(/'/g, '').replace(/\./g, '');
 
       // If we have an exact match (i.e. 'who is The Doctor?')
-      var name = t.match(/^(\bwho\b|\bwhat\b|\bpwy\b|\bbeth\b) (?:is|are|yn) ([a-zA-Z0-9_ ]*)/i);
+      var name = t.match(/^(\bwho\b|\bwhat\b|\bpwy\b|\bbeth\b) (?:is|are|yw) ([a-zA-Z0-9_ ]*)/i);
       var instance;
       if(name){
         instance = get_instance_by_name(name[2]);
