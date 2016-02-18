@@ -463,11 +463,11 @@ function send(){
 
   var sentence = input.replace(/'/g, "\\'");
   var card;
-  if(sentence.toLowerCase().trim() == 'show anomalies'){
+  if(sentence.toLowerCase().trim() == 'show anomalies'||sentence.toLowerCase().trim() == 'dangos anomaleddau'){
     add_card_simple(sentence, 'user');
     var objects = node.concepts.object.instances;
     for(var i = 0; i < objects.length; i++){
-      add_card_simple(objects[i].gist, 'friend');
+      add_card_simple(node.ce_to_cw(objects[i].gist), 'friend');
     }
     return;
   }
@@ -497,12 +497,15 @@ function confirm_card(id, content){
   forbid_input = false;
 
   if(submitted_statements.indexOf(content.toLowerCase()) > -1){
-    add_card_simple("I cannot accept duplicate information from the same user.", 'friend');
-    return window.alert("You have already entered or conifirmed this statement.");
+    //add_card_simple("I cannot accept duplicate information from the same user.", 'friend');
+    add_card_simple("Dydw i ddim yn gallu derbyn gwybodaeth dyblyg o'r un defnyddiwr.", 'ffrind');
+    //return window.alert("You have already entered or conifirmed this statement.");
+    return window.alert("Rwt ti wedi nodi neu cadarnhau datganiad hwn yn barod.");
   }
   submitted_statements.push(content.toLowerCase());
 
-  add_card_simple("Yes.", 'user');
+  //add_card_simple("Yes.", 'user');
+  add_card_simple("Ie.", 'user');
   var card = "there is a tell card named 'msg_{uid}' that has '"+content.replace(/'/g, "\\'")+"' as content and is to the agent '"+node.agent.get_name().replace(/'/g, "\\'")+"' and is from the individual '"+user.id+"' and has the timestamp '{now}' as timestamp and is in reply to the card '"+id+"'";
   card+=" and has '"+log.keypresses+"' as number of keystrokes";
   card+=" and has '"+log.end_time+"' as submit time";
@@ -521,8 +524,10 @@ function confirm_card(id, content){
 function unconfirm_card(id){
   document.getElementById("confirm_"+id).style.display = "none";
   document.getElementById("unconfirm_"+id).style.display = "none";
-  add_card_simple("No.", 'user');
-  add_card_simple("OK.", 'friend');
+  //add_card_simple("No.", 'user');
+  add_card_simple("Na.", 'user');
+  //add_card_simple("OK.", 'friend');
+  add_card_simple("Iawn.", 'friend');
   forbid_input = false;
 }
 
@@ -582,7 +587,8 @@ function add_card(card){
     c+='">';
     c+='<p>';
     if(card_type != null && card_type.name == "confirm card"){
-      c+='OK. Is this what you meant?<br /><br />';
+      //c+='OK. Is this what you meant?<br /><br />';
+      c+='Iawn. A yw hyn yn beth oeddet yn ei olygu?<br /><br />';
     }
     c+=content.replace(/(?:\r\n|\r|\n)/g, ' <br /> ').replace(/  /g, '&nbsp;&nbsp;')+'</p>';
     if(card_type != null && card_type.name == "confirm card"){
