@@ -532,7 +532,7 @@ function unconfirm_card(id){
 function update_ui(){
   if(settings.logged_in == true){
     ui.overlays.login.style.display = "none";
-    ui.info.score.innerHTML = user.score+' pwyntiau';
+    ui.info.score.innerHTML = user.score+' pwynt';
     if(user.selected_screen == "moira"){
       ui.overlays.moira.style.display = "block"; 
       ui.overlays.dashboard.style.display = "none";
