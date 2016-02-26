@@ -1536,6 +1536,7 @@ function CENode(){
       //possible_words.push("where is ");
       //possible_words.push("what is ");
       //possible_words.push("who is ");
+      possible_words.push("mae'r ");
       possible_words.push("beth yw ");
       possible_words.push("pwy yw ");
       possible_words.push("rhestri achosion o math ");
@@ -1558,7 +1559,8 @@ function CENode(){
 
     var mentioned_instances = [];
 
-    if(s.indexOf("there is") == -1 || tokens.length == 1){
+    //if(s.indexOf("there is") == -1 || tokens.length == 1){
+    if(s.indexOf("mae'r") == 0 || tokens.length == 1){
       for(var i = 0; i < _instances.length; i++){
         possible_words.push(_instances[i].name);
         if(s.indexOf(_instances[i].name.toLowerCase()) > -1){
