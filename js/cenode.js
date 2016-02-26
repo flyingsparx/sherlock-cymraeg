@@ -1371,6 +1371,8 @@ function CENode(){
     var focus_instance=null;
     var smallest_index = 999999;
     for(var i = 0; i < _instances.length; i++){
+      if(_instances[i].name.length==1) //Fix single-character usernames issue in CW version
+        break;
       var possible_names = _instances[i].synonyms.concat(_instances[i].name);
       for(var j = 0; j < possible_names.length; j++){
         if(t.toLowerCase().indexOf(possible_names[j].toLowerCase()) > -1){
@@ -1384,6 +1386,9 @@ function CENode(){
     }
     if(focus_instance != null){
       var focus_concept = focus_instance.type;
+
+      //console.log("FI:"+focus_instance.name);
+      //console.log("FC:"+focus_concept.name);
 
       var focus_instance_words = focus_instance.name.toLowerCase().split(" ");
       var focus_concept_words = focus_concept.name.toLowerCase().split(" ");
