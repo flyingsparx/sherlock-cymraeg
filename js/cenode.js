@@ -1318,25 +1318,35 @@ function CENode(){
       }
     }
 
-    else if(t.match(/^list (\ball\b|\binstances\b)/i)){
+    //else if(t.match(/^list (\ball\b|\binstances\b)/i)){
+    else if(t.match(/^rhestri /i)){
       var ins = [];
       var s = "";
-      if(t.toLowerCase().indexOf("list instances of type") == 0){
-        var con = t.toLowerCase().replace("list instances of type", "").trim();
+      //if(t.toLowerCase().indexOf("list instances of type") == 0){
+      if(t.toLowerCase().indexOf("rhestri achosion o math") == 0){
+        //var con = t.toLowerCase().replace("list instances of type", "").trim();
+        var con = t.toLowerCase().replace("rhestri achosion o math", "").trim();
         ins = node.get_instances(con);
-        s = "Instances of type '"+con+"':";
+        //s = "Instances of type '"+con+"':";
+        s = "Achosion o math '"+con+"':";
       }
-      else if(t.toLowerCase().indexOf("list all instances of type") == 0){
-        var con = t.toLowerCase().replace("list all instances of type", "").trim();
+      //else if(t.toLowerCase().indexOf("list all instances of type") == 0){
+      else if(t.toLowerCase().indexOf("rhestri pob achos o math") == 0){
+        //var con = t.toLowerCase().replace("list all instances of type", "").trim();
+        var con = t.toLowerCase().replace("rhestri pob achos o math", "").trim();
         ins = node.get_instances(con, true);
-        s = "All instances of type '"+con+"':";
+        //s = "All instances of type '"+con+"':";
+        s = "Pob achos o fath '"+con+"':";
       }
-      else if(t.toLowerCase() == "list instances"){
+      //else if(t.toLowerCase() == "list instances"){
+      else if(t.toLowerCase() == "rhestri achosion"){
         ins = _instances;    
-        s = "All instances:";
+        //s = "All instances:";
+        s = "Pob achos:";
       }
       if(ins.length == 0){
-        return [true, "I could not find any instances matching your query."];
+        //return [true, "I could not find any instances matching your query."];
+        return [true, "Doeddwn i ddim yn gallu dod o hyd i unrhyw achosion sy'n gyfateb i'ch ymholiad."];
       }
       var names = [];
       for(var i = 0; i < ins.length; i++){
@@ -1521,19 +1531,29 @@ function CENode(){
     }   
 
     if(tokens.length < 2){
-      possible_words.push("conceptualise a ~ ");
-      possible_words.push("there is a ");
-      possible_words.push("where is ");
-      possible_words.push("what is ");
-      possible_words.push("who is ");
+      //possible_words.push("conceptualise a ~ ");
+      //possible_words.push("there is a ");
+      //possible_words.push("where is ");
+      //possible_words.push("what is ");
+      //possible_words.push("who is ");
+      possible_words.push("beth yw ");
+      possible_words.push("pwy yw ");
+      possible_words.push("rhestri achosion o math ");
+      possible_words.push("rhestri pob achos o math ");
+      possible_words.push("rhestri achosion ");
     }
     if(tokens.length > 2){
-      possible_words.push("named '");
-      possible_words.push("that ");
-      possible_words.push("is a ");
-      possible_words.push("and is ");
-      possible_words.push("and has the ");
-      possible_words.push("the ");
+      //possible_words.push("named '");
+      //possible_words.push("that ");
+      //possible_words.push("is a ");
+      //possible_words.push("and is ");
+      //possible_words.push("and has the ");
+      //possible_words.push("the ");
+      possible_words.push("sydd ");
+      possible_words.push("yn ");
+      possible_words.push("ac yn ");
+      possible_words.push("ac yn cael ");
+      possible_words.push("y ");
     } 
 
     var mentioned_instances = [];

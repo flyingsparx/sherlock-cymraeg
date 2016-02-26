@@ -469,7 +469,7 @@ function send(){
     }
     return;
   }
-  else if(sentence.toLowerCase().indexOf("who ") == 0 || sentence.toLowerCase().indexOf("what ") == 0 || sentence.toLowerCase().indexOf("where ") == 0 || sentence.toLowerCase().indexOf("list ") == 0 || sentence.toLowerCase().indexOf("beth ") == 0){
+  else if(sentence.toLowerCase().indexOf("who ") == 0 || sentence.toLowerCase().indexOf("what ") == 0 || sentence.toLowerCase().indexOf("where ") == 0 || sentence.toLowerCase().indexOf("list ") == 0 || sentence.toLowerCase().indexOf("beth ") == 0 || sentence.toLowerCase().indexOf("rhestri ") == 0){
     card = "there is an ask card named 'msg_{uid}' that has '"+sentence+"' as content and is to the agent '"+node.agent.get_name().replace(/'/g, "\\'")+"' and is from the individual '"+user.id+"' and has the timestamp '{now}' as timestamp";
     add_card_simple(input, 'user');
   }
