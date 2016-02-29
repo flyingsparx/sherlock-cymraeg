@@ -776,7 +776,8 @@ function CENode(){
     cw = cw.replace(/contains/g, "yn cynnwys"); 
     cw = cw.replace(/contents/g, "cynnwys"); 
     cw = cw.replace(/ has ?t?h?e? /g, " yn cael "); 
-    cw = cw.replace(/ is in ?t?h?e? /g, " yn yr "); 
+    cw = cw.replace(/ is in ?t?h?e? ([aeiouy])/g, " yn yr $1"); 
+    cw = cw.replace(/ is in ?t?h?e? /g, " yn y "); 
     cw = cw.replace(/ has the /g, " yn cael "); 
     cw = cw.replace(/ as /g, " fel "); 
     cw = cw.replace(/ and /g, " ac "); 
@@ -1498,7 +1499,7 @@ function CENode(){
       }
     }
     //return [false, "Un-parseable input: "+t];
-    return [false, "Mewnbwn yn-parseable: "+t];
+    return [false, "Ni ellir mewnbwn cael ei parsio: "+t];
   }
 
   /*
